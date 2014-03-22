@@ -9,15 +9,13 @@ public class ConfigReader {
 	public void loadConfig() throws ApplicationException {
 		
 		Logger.logMessage("Loading config...");
-	//	String filePath = "App.config";
-		
-		String filePath = getClass().getResource("/App.config").toString();
+		String filePath = getClass().getResource("/App.config").getPath();
 		if (filePath == null)
 		{
-			throw new ApplicationException("Error while reading config file");
+			Logger.logMessage("Error while reading config file");
+			return;
+		//	throw new ApplicationException("Error while reading config file");
 		}
-		
-		filePath = filePath.substring(5); // getResource returns "file:". To skip it read after 5. char 
 		
 		File inputFile = null;
 		FileReader fileReader = null;
@@ -33,7 +31,9 @@ public class ConfigReader {
 				TextFileLogListener.LogPath = keyValue[1];
 			}
 		} catch (IOException ex) {
-			throw new ApplicationException("Error while reading config file: " + ex.getMessage());
+			Logger.logMessage("Error while reading config file");
+			return;
+			// throw new ApplicationException("Error while reading config file: " + ex.getMessage());
 		} finally {
 			try {
 				reader.close();

@@ -52,9 +52,7 @@ public class AGNES {
 		}
 		
 		m_initialDistanceMatrix = new DistanceMatrix(m_clusterMethod); 
-		
 		m_initialDistanceMatrix.initializeDistanceMatrix(m_clusterObjectList, new JacquardTanimotoDistanceMetric());
-		
 		
 		
 		// Copy this to a new object. If method is not average a new object is not needed.  
@@ -87,7 +85,6 @@ public class AGNES {
 		}
 	}
 	
-	
 	// Merges (or fuses) two clusters. And deletes the distance values from
 	// the matrix. So the matrix is reduced by one after every merger. 
 	private Cluster mergeClusters(Cluster cluster1, Cluster cluster2) {
@@ -118,7 +115,5 @@ public class AGNES {
 		
 		return clMergedCluster;
 	}
-
-	
 }
 
